@@ -11,5 +11,8 @@ public interface UserDao {
 	public boolean isDelete(int uid);
 	public User findUserById(int empid);
 	public boolean updateUser(User user);
+	public User getSingleUserDetails(int uid);
+	public boolean udateSingleUserData(User user);
+	
 
 }

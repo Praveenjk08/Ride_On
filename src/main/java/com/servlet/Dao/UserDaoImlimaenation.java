@@ -194,6 +194,62 @@ public class UserDaoImlimaenation implements  UserDao{
 		return false;
 	}
 
+	@Override
+	public User getSingleUserDetails(int uid) {
+		User user=null;
+		String details="select * from users where user_id=? ;";
+		con=DatabaseConnection.givemePower();
+		try {
+			
+			pst=con.prepareStatement(details);
+			pst.setInt(1, uid);
+			ResultSet res=pst.executeQuery();
+			if(res.next())
+			{
+				user=new User();
+				user.setU_id(res.getInt("user_id"));
+				user.setFullname(res.getString("full_name"));
+				user.setEmail(res.getString("email"));
+				user.setPass(res.getString("password"));
+				user.setPhone(res.getLong("phone_number"));
+				user.setCurrDateTime(res.getTimestamp("created_at"));
+						 
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
+
+	@Override
+	public boolean udateSingleUserData(User user) {
+		String update="update users set full_name=?, email=?, password=?, phone_number=? where user_id=?";
+		con=DatabaseConnection.givemePower();
+		try {
+			pst=con.prepareStatement(update);
+			pst.setString(1, user.getFullname());
+			pst.setString(2,user.getEmail());
+			pst.setString(3, user.getPass());
+			pst.setLong(4, user.getPhone());
+			pst.setInt(5, user.getU_id());
+			int count=pst.executeUpdate();
+			if(count>0)
+			{
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return false;
+		
+	}
+
+	
 	
 	
 

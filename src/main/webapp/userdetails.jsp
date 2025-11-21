@@ -33,8 +33,8 @@ for(User ulist:userlist) { %>
 	<th><%=ulist.getPhone()%></th>
 	<th><%=ulist.getCurrDateTime()%></th>
 	<th>
-	<!-- <a href="delete?d=<%=ulist.getU_id()%>">Delete</a> -->
-	<a href="edit?e=<%=ulist.getU_id()%>">Edit</a>
+	 <a href="delete?d=<%=ulist.getU_id()%>">Delete</a>
+	<a href="edit?e=<%=ulist.getU_id()%>">Edit</a> 
 	</th>
 	
      </tr>
